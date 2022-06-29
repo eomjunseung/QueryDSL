@@ -58,10 +58,11 @@ class MemberJpaRepositoryTest {
 
         //조건 빼면 다 긁어옴
         MemberSearchCondition condition = new MemberSearchCondition();
-//        condition.setAgeGoe(35);
-//        condition.setAgeLoe(40);
+        condition.setAgeGoe(35);
+        condition.setAgeLoe(40);
 //        condition.setTeamName("teamB");
-        List<MemberTeamDto> result = memberJpaRepository.searchByBuilder(condition);
+//        List<MemberTeamDto> result = memberJpaRepository.searchByBuilder(condition);
+        List<MemberTeamDto> result = memberJpaRepository.search(condition);
         System.out.println("result = " + result.size());
 //        assertThat(result).extracting("username").containsExactly("member4");
     }

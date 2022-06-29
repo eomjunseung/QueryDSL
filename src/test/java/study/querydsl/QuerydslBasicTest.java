@@ -17,9 +17,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import study.querydsl.dto.MemberDto;
-import study.querydsl.dto.QMemberDto;
-import study.querydsl.dto.UserDto;
+import study.querydsl.dto.*;
 import study.querydsl.entity.Member;
 import study.querydsl.entity.QMember;
 import study.querydsl.entity.QTeam;
@@ -696,5 +694,8 @@ public class QuerydslBasicTest {
                 .fetchFirst();
         System.out.println("result = " + result);
     }
+
+
+
 
 }
