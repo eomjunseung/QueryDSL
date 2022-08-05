@@ -100,8 +100,8 @@ public class QuerydslBasicTest {
                             .where(member.username.eq("member1") 
                             .and(member.age.eq(10)))
                             .fetchOne();
-                                //.where(member.username.eq("member1"), member.age.eq(10)) 가능
-
+                                //.where(member.username.eq("member1"), member.age.eq(10)) 가능 -> where 에 파라미터 검색조건 추가시 AND
+                                //.and() , . or() 를 메서드 체인으로 연결할 수 있다
         assertThat(findMember.getUsername()).isEqualTo("member1");
     }
 
@@ -127,7 +127,7 @@ public class QuerydslBasicTest {
         //count 쿼리로 변경
         long count = queryFactory
                 .selectFrom(member)
-                .fetchCount();
+                .fetchCount();// count 쿼리로 변경해서 count 수 조회
     }
 
     @Test
@@ -155,7 +155,7 @@ public class QuerydslBasicTest {
                 .orderBy(member.age.asc())
                 .offset(1) //0부터 시작임, 1 이라는건 앞에 하나 스킵이라는 거임
                 .limit(2) //최대 2건 조회
-                .fetch();
+                .fetch();// 리스트 조회, 데이터 없으면 빈 리스트 반환
         assertThat(result.size()).isEqualTo(2);
         assertThat(result.get(0).getUsername()).isEqualTo("member2");
     }
@@ -168,7 +168,7 @@ public class QuerydslBasicTest {
                 .orderBy(member.username.desc())
                 .offset(1)
                 .limit(2)
-                .fetchResults();
+                .fetchResults(); //페이징 정보 포함, total count 쿼리 추가 실행
 
         assertThat(queryResults.getTotal()).isEqualTo(4);
         assertThat(queryResults.getLimit()).isEqualTo(2);
